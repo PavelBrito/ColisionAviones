@@ -11,6 +11,7 @@ public int col;
 public int row;
 public int noPaso;
 
+    public static final int TAMANO_GRID = 14;
     Plano(int noPaso, ArrayList<Avion> aviones, ArrayList<Colision> colisiones) {
 
         this.noPaso = noPaso;
@@ -27,8 +28,8 @@ public int noPaso;
                 tmpY = avion.y;
             }
         }
-        col = tmpX;
-        row = tmpY;
+        col=TAMANO_GRID;//col = tmpX; //También hice este cambio para adaptar el tamaño del Grid.
+        row=TAMANO_GRID;//row = tmpY;
 
         Log.i("Aviones max de columna", String.valueOf(col));
         Log.i("Aviones max de renglon", String.valueOf(row));
