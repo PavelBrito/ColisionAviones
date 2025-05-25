@@ -2,6 +2,8 @@ package com.example.colisionaviones;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
 public class Analizador {
     static HashMap<Integer, Plano> memoria = new HashMap<>();
 
@@ -11,7 +13,6 @@ public class Analizador {
     }
 
     public static Plano next(int noPaso, Plano plano){
-        // Implementa usted
         if (memoria.containsKey(noPaso)){
             return memoria.get(noPaso);
         } else {
@@ -19,36 +20,49 @@ public class Analizador {
             ArrayList<Avion> nuevosAviones = new ArrayList<>();
 
             // Calcular colision
-            /// Aqui
             ArrayList<Colision> colisiones = new ArrayList<>();
 
-            // Cuantas colisiones hay en este plano ?
-
-            ///// AQUIIIIII SE HACE EL CALCULO DE LAS COLISION
-
-
-            // Esta calculando la sig. iteracion
-            // (0,0,>), (2,0,<) NO PASO = 0
-            // NO PASO = 1 + 1 COLISION EN DONDE? ((1,0,>), (1,0,<) )
-
+            // Mueve los aviones
             for (Avion avion: plano.aviones) {
-                // Calcular movimiento
+                Avion nuevoAvion = new Avion(avion.direccion, avion.x, avion.y);
                 switch (avion.direccion){
                     case NORTH:
-                        avion.y = avion.y - 1;
+                        nuevoAvion.y = nuevoAvion.y - 1;
                         break;
                     case SOUTH:
-                        avion.y = avion.y + 1;
+                        nuevoAvion.y = nuevoAvion.y + 1;
                         break;
                     case EAST:
-                        avion.x = avion.x + 1;
+                        nuevoAvion.x = nuevoAvion.x + 1;
                         break;
                     case WEST:
-                        avion.x = avion.x - 1;
+                        nuevoAvion.x = nuevoAvion.x - 1;
                         break;
                 }
-                nuevosAviones.add(avion);
+                // Limita la posición a la grid de 14x14
+                nuevoAvion.x = Math.max(0, Math.min(13, nuevoAvion.x));
+                nuevoAvion.y = Math.max(0, Math.min(13, nuevoAvion.y));
+                nuevosAviones.add(nuevoAvion);
             }
+
+            // Detección de colisiones
+            HashMap<String, ArrayList<Avion>> posiciones = new HashMap<>();
+            for (Avion avion : nuevosAviones) {
+                String key = avion.x + "-" + avion.y;
+                if (!posiciones.containsKey(key)) {
+                    posiciones.put(key, new ArrayList<>());
+                }
+                posiciones.get(key).add(avion);
+            }
+            for (Map.Entry<String, ArrayList<Avion>> entry : posiciones.entrySet()) {
+                if (entry.getValue().size() > 1) {
+                    String[] partes = entry.getKey().split("-");
+                    int x = Integer.parseInt(partes[0]);
+                    int y = Integer.parseInt(partes[1]);
+                    colisiones.add(new Colision(x, y, entry.getValue())); // Constructor con aviones involucrados
+                }
+            }
+
             planoNuevo = new Plano(noPaso, nuevosAviones, colisiones);
             memoria.put(noPaso, planoNuevo);
             return planoNuevo;
@@ -58,5 +72,4 @@ public class Analizador {
     public static Plano prev(int noPaso) {
         return memoria.get(noPaso);
     }
-
 }
