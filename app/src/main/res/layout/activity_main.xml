@@ -59,7 +59,16 @@
         android:layout_height="match_parent"
         android:rowCount="14"
         android:columnCount="14"
-        tools:ignore="GridLayout"/>
+        tools:ignore="GridLayout">
+
+        <ImageView
+            android:id="@+id/avionView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_column="0"
+            app:layout_row="0"
+            app:srcCompat="@drawable/south" />
+    </androidx.gridlayout.widget.GridLayout>
 
 
 

@@ -24,7 +24,7 @@ public int noPaso;
             if (avion.x > tmpX) {
                 tmpX = avion.x;
             }
-            if (avion.y > tmpX) {
+            if (avion.y > tmpY) {
                 tmpY = avion.y;
             }
         }
