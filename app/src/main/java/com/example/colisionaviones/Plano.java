@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class Plano {
-public ArrayList<Avion> aviones;
+    public ArrayList<Avion> aviones;
 public ArrayList<Colision> colisiones;
 public int col;
 public int row;
@@ -35,7 +35,7 @@ public int noPaso;
     }
 
     public Plano next() {
-        Log.i("Cristian", String.valueOf(noPaso));
+        Log.i("Pavel", String.valueOf(noPaso));
         noPaso += 1;
         return Analizador.next(noPaso, this);
     }

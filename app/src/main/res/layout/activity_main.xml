@@ -24,12 +24,12 @@
         tools:layout_editor_absoluteY="567dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="509dp" />
+        android:text="Siguiente"
+        tools:layout_editor_absoluteX="197dp"
+        tools:layout_editor_absoluteY="510dp" />
 
     <TextView
         android:id="@+id/Contador"
@@ -47,10 +47,24 @@
         tools:layout_editor_absoluteX="180dp"
         tools:layout_editor_absoluteY="423dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <GridView
         android:layout_width="409dp"
         android:layout_height="416dp"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

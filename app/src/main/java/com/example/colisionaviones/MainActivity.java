@@ -7,6 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import AvionAdapter;
+import Avion;
+import Aerolineas;
+import Analizador;
+import AvionHolder;
+import Direccion;
+import Planificador;
+import Plano;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         listaAviones = findViewById(R.id.listaAviones);
         btnNext = findViewById(R.id.btnNext);
         plano =  Planificador.crearRutaInicial();
-        adapter = new AvionAdapter(plano.aviones);
+        adapter = new AvionAdapter(plano.aviones, plano.colisiones);
         listaAviones.setAdapter(adapter);
         listaAviones.setLayoutManager(new GridLayoutManager(this, 5));
 
